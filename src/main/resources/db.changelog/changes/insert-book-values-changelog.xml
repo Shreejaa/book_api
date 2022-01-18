@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2" author="shreejaa">
+        <preConditions onFail="MARK_RAN">
+            <and>
+                <or>
+                    <tableExists tableName="book" schemaName="booksdb"/>
+                    <tableExists tableName="book" schemaName="public"/>
+                </or>
+                <sqlCheck expectedResult="0">select count(*) from book</sqlCheck>
+            </and>
+        </preConditions>
+        <insert tableName="book">
+            <column name="title" value="harry potter and sorcer stone"/>
+            <column name="author" value="j.k rowling"/>
+            <column name="isbn" value="98763651544gdj"/>
+            <column name="price" valueNumeric="55.22"/>
+        </insert>
+        <insert tableName="book">
+            <column name="title" value="harry potter and prisoner of azkaban"/>
+            <column name="author" value="j.k rowling"/>
+            <column name="genre" value="fantasy"/>
+            <column name="isbn" value="5754748745sd4s"/>
+            <column name="price" valueNumeric="55.22"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
